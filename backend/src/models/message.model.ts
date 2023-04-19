@@ -5,4 +5,4 @@ export const MessageSchema = new Schema ({
     user: {type: Schema.Types.ObjectId, ref: 'user'}
 });
 
-export const MessageModel = model('message', MessageSchema)
+export const MessageModel = model("message", MessageSchema)

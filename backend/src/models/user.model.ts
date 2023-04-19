@@ -8,4 +8,4 @@ export const UserSchema = new Schema({
     messages: {type: Schema.Types.ObjectId, ref: 'message'}
 });
 
-export const UserModel = model('user', UserSchema)
+export const UserModel = model("user", UserSchema)

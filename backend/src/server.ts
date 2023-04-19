@@ -1,6 +1,7 @@
 import express from "express";
 import cors from "cors";
 import mongoose from "mongoose";
+import messageRouter from './routes/message.routes';
 import path from "path";
 
 mongoose.connect("mongodb://127.0.0.1:27017/db-mean");
@@ -11,10 +12,14 @@ app.use(cors({
     origin:["http://localhost:4200"]
 }));
 
+app.use(messageRouter);
+
+/*
 app.use(express.static("public"));
 app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, "public", "index.html"));
 })
+*/
 
 const PORT = 5000;
 app.listen(PORT, () => {
