@@ -1,11 +1,11 @@
-import mongoose from 'mongoose';
+import {Schema, model} from "mongoose";
 
-let userSchema = new mongoose.Schema({
+export const UserSchema = new Schema({
     firstName: {type: String, required: true},
     lastName: {type: String, required: true},
     password: {type: String, required: true},
     email: {type: String, required: true, unique: true},
-    messages: {type: mongoose.Schema.Types.ObjectId, ref: 'Message'}
+    messages: {type: Schema.Types.ObjectId, ref: 'message'}
 });
 
-export default mongoose.model('User', userSchema);
+export const UserModel = model('user', UserSchema)
