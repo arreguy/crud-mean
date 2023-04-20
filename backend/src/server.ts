@@ -9,15 +9,15 @@ mongoose.connect("mongodb://127.0.0.1:27017/db-mean");
 const app = express();
 app.use(cors({
     credentials: true,
-    origin:["http://localhost:4200"]
+    origin:["http://localhost:35901"]
 }));
 
 app.use(messageRouter);
 
 /*
 app.use(express.static("public"));
-app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, "public", "index.html"));
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, "/../../frontend/src/index.html"));
 })
 */
 
