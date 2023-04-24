@@ -1,0 +1,16 @@
+<div class="card" >
+    <div class="card-body">
+        <h4 class="card-title">{{ messageVarClasse.content }}</h4>
+        <p class="card-text">{{ messageVarClasseAlias.content }}</p>
+    </div>
+    <footer class="card-footer">
+        <div class="card-body">
+            <h4 class="card-title">{{ messageVarClasse.username }}</h4>
+            <p class="card-text">{{ messageVarClasseAlias.username }}</p>
+        </div>
+        <div class="config">
+            <a href="#" (click)="onEdit()" class="card-link">Edit</a>
+            <a href="#" class="card-link">Delete</a>
+        </div>
+    </footer>
+</div>
