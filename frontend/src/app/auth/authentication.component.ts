@@ -2,7 +2,8 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-authentication',
-  template: '<h1>Componente de Autenticação</h1>' 
+  templateUrl: './authentication.component.html',
+  styleUrls: [ '../../../node_modules/bootstrap/dist/css/bootstrap.min.css' ]
 
 })
 export class AuthenticationComponent {

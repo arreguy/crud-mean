@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Message } from './message.model';
+import { MessageService } from './message.service';
 
 @Component({
   selector: 'app-message',
@@ -11,7 +12,6 @@ import { Message } from './message.model';
 export class MessageComponent {
 
   @Input() messageVarClasse : Message = new Message("","");
-
   @Input('inputMessage') messageVarClasseAlias : Message = new Message("","");
 
   @Output() editClicked_MessageMetodoClasse = new EventEmitter<string>();
@@ -22,4 +22,9 @@ export class MessageComponent {
     this.editClicked_MessageMetodoClasseAlias.emit("Texto veio de message (child) para o appp (pai) - Alias");
   }
 
+  constructor(private messageServiceObj: MessageService) {  }
+  
+  onDelete() {
+    this.messageServiceObj.deleteMessage(this.messageVarClasse);
+  }
 }
