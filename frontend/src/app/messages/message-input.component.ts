@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Message } from './message.model';
+import { Subscription } from 'rxjs/internal/Subscription';
 import { MessageService } from './message.service';
 
 @Component({
@@ -13,7 +14,11 @@ export class MessageInputComponent {
 
   onSubmit(form: NgForm) {
     const messageAux = new Message(form.value.myContentngForm, 'Breno');
-    this.messageService.addMessage(messageAux);
+    this.messageService.addMessage(messageAux)
+      .subscribe(
+        dadosSucesso => console.log(dadosSucesso),
+        dadosErro => console.log(dadosErro)
+      );
     console.log(form);
     form.resetForm();
   }

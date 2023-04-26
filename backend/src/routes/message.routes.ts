@@ -1,47 +1,36 @@
-import express, { response } from "express";
+import express from "express";
 import { MessageModel } from "../models/message.model";
 
-const messageRouter = express();
+const messageRouter = express.Router();
 
-messageRouter.get("/messages", async (req, res) => {
-    const messages = await MessageModel.find({});
-
-    try {
-        res.send(messages)
-    } catch (error) {
-        res.status(500).send(error);
-    }
+messageRouter.post('/', (req, res) => {
+    let message = new MessageModel({
+        content: req.body.content
+    });
+    message.save()
+    .then(item => {
+        res.send("Item has been saved to the database.");
+    })
+    .catch(err => {
+        res.status(400).send("Item was not saved to database.");
+    });     
 });
 
-messageRouter.post("/message", async (req, res) => {
-    const message = new MessageModel(req.body);
-    
-    try {
-        await message.save();
-        res.send(message);
-    } catch (error) {
-        res.status(500).send(error);
-    }
-});
+messageRouter.get('/', function(req, res, next) {
+    MessageModel.find(function(err: any, result: any) {
+        if(err) {
+            return res.status(500).json({
+                myErroTitle: "Um erro aconteceu.",
+                myError: err
+            });
+        }
+        res.status(200).json({
+            myMsgSuccess: "Mensagem recuperada com sucesso.",
+            objMensagemRecuperada : result
+        });
+        console.log("RECUPERAR: " + result);
+    })
+})
 
-messageRouter.patch("/message/:id", async (req, res) => {
-    try {
-    MessageModel.findByIdAndUpdate(req.params.id, req.body, {new: true}) 
-    return res.send("Saved.")
-    } catch (error) {
-        res.status(500).send(error);
-    }
-});
-
-messageRouter.delete("/message/:id", async (req, res) => {
-    try {
-        const message = await MessageModel.findByIdAndDelete(req.params.id);
-
-        if (!message) response.status(404).send("No item found.");
-        response.status(200).send();
-    } catch (error) {
-        res.status(500).send(error);
-    }
-});
 
 export default messageRouter;
