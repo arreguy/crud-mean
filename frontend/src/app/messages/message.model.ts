@@ -3,6 +3,7 @@ export class Message {
     username: string;
     messageId?: string;
     userId?: string;
+    _id: any;
 
     constructor(content: string, username: string, messageId?:string, userId?: string) {
         this.messageId = messageId;

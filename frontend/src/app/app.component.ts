@@ -12,6 +12,4 @@ import { MessageService } from './messages/message.service';
 })
 export class AppComponent {
   title = "frontend";
-  messageBinding: Message = new Message("Texto da Mensagem", "Arreguy");
-  messageBindingAlias: Message = new Message("Texto da Mensagem Alias", "ArreguyAlias")
 }  

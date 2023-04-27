@@ -5,24 +5,24 @@ import { MessageService } from './message.service';
 @Component({
   selector: 'app-message-list',
   template: `
-      <div class="col-md-8 col-md-offset-2"> 
+      <div class> 
         <app-message [messageVarClasse]="msg"
           (editClicked_MessageMetodoClasse)="msg.content = $event"  
-          *ngFor="let msg of messageS" >
+          *ngFor="let msg of this.messageService.messageSService" >
         </app-message>    
     </div>
   `
 
 })
 export class MessageListComponent implements OnInit {
-  messageS: Message[] = [ new Message("Texto da Mensagem", "BrenoArreguy"),
-                          new Message("Texto 2 da Mensagem", "PandinoArreguy"),
-                          new Message("Texto 3 da Mensagem", "ArreguyCampos")
-                        ];
 
-  constructor (private messageService: MessageService) {  }
+  constructor (public messageService: MessageService) {  }
 
   ngOnInit(): void {
-    this.messageS = this.messageService.getMessages();
-  }                        
+    this.messageService.getMessages()
+    .subscribe(messages => {
+      console.log(messages);
+      this.messageService.messageSService = messages;
+    });
+  }               
 }

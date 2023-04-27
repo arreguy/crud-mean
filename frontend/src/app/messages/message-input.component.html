@@ -1,14 +1,20 @@
-<div class="col-md-8 col-md-offset-2">
-    <form (ngSubmit)="onSubmit(refLocalForm)" #refLocalForm="ngForm" ngNativeValidate>
-    <div class="form-group">
-        <label for="myContentngForm">Conteúdo</label>
-        <input  type="text" 
-                id="myContentngForm" 
-                class="form-control"
-                ngModel
-                name="myContentngForm"
-                required> 
+<form (ngSubmit)="onSubmit(refLocalForm)" #refLocalForm="ngForm" ngNativeValidate class="row row-cols-lg-auto g-3 align-items-center mb-3">
+
+    <div class="col-12">
+    
+    <label for="myContentngForm" class="visually-hidden">Conteudo</label>
+
+    <div class="input-group">
+        <input  type="text" id="myContentngForm" class="form-control" ngModel 
+            name="myContentngForm" required class="form-control" placeholder="Mensagem"> 
+        </div>
+
+    </div> 
+
+    <div class="col-12">
+
+        <button type="submit" class="btn btn-primary">Enviar</button>
+
     </div>
-    <button type="submit" class="btn btn-primary">Salve minha mensagem</button>
-    </form>
-</div>
+            
+</form>

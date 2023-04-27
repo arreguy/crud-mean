@@ -12,19 +12,24 @@ import { MessageService } from './message.service';
 export class MessageComponent {
 
   @Input() messageVarClasse : Message = new Message("","");
-  @Input('inputMessage') messageVarClasseAlias : Message = new Message("","");
 
   @Output() editClicked_MessageMetodoClasse = new EventEmitter<string>();
-  @Output('outputMessage') editClicked_MessageMetodoClasseAlias = new EventEmitter<string>();
 
   onEdit() {
-    this.editClicked_MessageMetodoClasse.emit("Texto veio de message (child) para o app (pai)");
-    this.editClicked_MessageMetodoClasseAlias.emit("Texto veio de message (child) para o appp (pai) - Alias");
+    const novoConteudo = prompt("Insira o novo conteúdo da mensagem: ");
+    if (novoConteudo) {
+      const updatedMessage = {...this.messageVarClasse, content: novoConteudo};
+      this.messageService.updateMessage(updatedMessage)
+      .subscribe();
+    }
   }
 
-  constructor(private messageServiceObj: MessageService) {  }
-  
+  constructor(private messageService: MessageService) {  }
+
   onDelete() {
-    this.messageServiceObj.deleteMessage(this.messageVarClasse);
+    this.messageService.deleteMessage(this.messageVarClasse)
+      .subscribe(deletedMessage => {
+        console.log("Mensagem deletada: ", deletedMessage);
+      });
   }
 }

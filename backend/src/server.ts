@@ -6,16 +6,17 @@ import appRouter from './routes/app.routes';
 import userRouter from './routes/user.routes';
 import path from "path";
 
-mongoose.connect("mongodb://127.0.0.1:27017/db-mean");
-
 const app = express();
+
+app.use(express.json());
 app.use(cors({
     credentials: true,
-    origin:["http://localhost:35901"]
+    origin:["http://localhost:4200"]
 }));
 
-app.use('/message', messageRouter);
-app.use('/', appRouter);
+mongoose.connect("mongodb://127.0.0.1:27017/db-mean");
+
+app.use('/messages', messageRouter);
 
 const PORT = 3000;
 app.listen(PORT, () => {

@@ -1,13 +1,13 @@
-<h1>Componente de Autenticação</h1>
 <header class="row spacing">
-        <nav class="col-md-8 col-md-offset-2">
-            <ul class="nav nav-tabs">
-                <li routerLinkActive="active"><a [routerLink]="['signup']">Sign Up</a></li>
-                <li routerLinkActive="active"><a [routerLink]="['signin']">Sign In</a></li>
-                <li routerLinkActive="active"><a [routerLink]="['logout']">Logout</a></li>
-            </ul>
-        </nav>
+
+    <div class="btn-group pb-3">
+        <a routerLinkActive="active" [routerLink]="['signup']" class="btn btn-primary">Cadastrar</a>
+        <a routerLinkActive="active" [routerLink]="['signin']" class="btn btn-primary">Entrar</a>
+        <a routerLinkActive="active" [routerLink]="['logout']" class="btn btn-primary">Sair</a>
+    </div>
+
 </header>
-<div class="row-spacing">
+
+<div class="mx-auto col-md-8 col-md-offset-2 row-spacing m-2 p-4 bg-light rounded" >
     <router-outlet></router-outlet>
 </div>

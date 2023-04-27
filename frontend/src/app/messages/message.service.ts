@@ -1,34 +1,35 @@
-import { HttpClient, HttpResponse, HttpHeaders } from '@angular/common/http';
-import { RequestOptions } from 'http';
+import { HttpClient } from '@angular/common/http';
+import { Observable, throwError } from 'rxjs';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
 import { Message } from './message.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MessageService {
-  private messageSService: Message[] = [];
+  public messageSService: Message[] = [];
 
   constructor(private http: HttpClient) { }
 
-  addMessage(message: Message) {
+  addMessage(message: Message): Observable<Message> {
     this.messageSService.push(message);
     console.log(this.messageSService);
 
-    const bodyReq = JSON.stringify(message);
-    let headers: HttpHeaders = req.headers;
-    return this.http.post('http:localhost:3000/message', bodyReq, { headers })
-      .map((responseRecebida: Response) => responseRecebida.json()
-      .catch((errorRecebido: Response) => Observable.throw(errorRecebido.json()));
+    return this.http.post<Message>('http://localhost:3000/messages', message);
   }
 
-  getMessages() {
-    return this.messageSService;
+  getMessages(): Observable<Message[]> {
+    return this.http.get<Message[]>('http://localhost:3000/messages');
   }
 
-  deleteMessage(message: Message) {
+  deleteMessage(message: Message): Observable<Message> {
     this.messageSService.splice(this.messageSService.indexOf(message), 1);
+    return this.http.delete<Message>(`http://localhost:3000/messages/${message._id}`)
   }
-  
+
+  updateMessage(message: Message): Observable<Message> {
+    const index = this.messageSService.findIndex(m => m._id === message._id);
+    this.messageSService[index] = message;
+    return this.http.put<Message>(`http://localhost:3000/messages/${message._id}`, message)
+  }  
 }

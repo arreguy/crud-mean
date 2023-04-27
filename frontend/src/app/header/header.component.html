@@ -1,10 +1,8 @@
 <header class="row">
-    <nav class="col-md-8 col-md-offset-2">
-        <ul class="nav nav-pills">
-            <li routerLinkActive="active">
-               <a [routerLink]="['/mensagens']">Mensagens</a></li>
-            <li routerLinkActive="active">
-                <a [routerLink]="['/autenticacao']">Autenticação</a></li>
-        </ul>
-    </nav>
+ 
+    <div class="btn-group mt-3">
+        <a routerLinkActive="active" [routerLink]="['/mensagens']" class="btn btn-primary" aria-current="page">Mensagens</a>
+        <a routerLinkActive="active" [routerLink]="['/autenticacao']" class="btn btn-primary">Autenticação</a>
+      </div>
+
 </header>
