@@ -5,7 +5,7 @@ export const UserSchema = new Schema({
     lastName: {type: String, required: true},
     password: {type: String, required: true},
     email: {type: String, required: true, unique: true},
-    messages: {type: Schema.Types.ObjectId, ref: 'message'}
+    messages: [{type: Schema.Types.ObjectId, ref: 'MessageSchema'}]
 });
 
 export const UserModel = model("user", UserSchema)

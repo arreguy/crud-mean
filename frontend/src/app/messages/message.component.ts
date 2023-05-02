@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { AuthService } from '../auth/auth.service';
 import { Message } from './message.model';
 import { MessageService } from './message.service';
 
@@ -11,7 +12,7 @@ import { MessageService } from './message.service';
 })
 export class MessageComponent {
 
-  @Input() messageVarClasse : Message = new Message("","");
+  @Input() messageVarClasse : Message = new Message("", "${this.authService.usuarioAtual.firstName} ${this.authService.usuarioAtual.lastName}");
 
   @Output() editClicked_MessageMetodoClasse = new EventEmitter<string>();
 
@@ -24,7 +25,7 @@ export class MessageComponent {
     }
   }
 
-  constructor(private messageService: MessageService) {  }
+  constructor(private messageService: MessageService, private authService: AuthService) {  }
 
   onDelete() {
     this.messageService.deleteMessage(this.messageVarClasse)

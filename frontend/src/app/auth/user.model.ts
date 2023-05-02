@@ -1,6 +1,14 @@
 export class User {
-    constructor(public email: string,
-                public password: string,
-                public firstName?: string,
-                public lastName?: string){}
+  firstName: string;
+  lastName: string;
+  password: string;
+  email: string;
+  _id?: any;
+
+  constructor(firstName: string, lastName: string, password: string, email: string) {
+    this.firstName = firstName,
+    this.lastName = lastName,
+    this.password = password,
+    this.email = email
+  }
 }

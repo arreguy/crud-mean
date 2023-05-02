@@ -1,20 +1,21 @@
 import express from "express";
 import { MessageModel } from "../models/message.model";
+import { UserModel } from "../models/user.model";
 
 const messageRouter = express.Router();
 
-messageRouter.post('/', (req, res) => {
-    const message = new MessageModel ({
-        content: req.body.content
-    });
-
-    message.save()
-        .then(savedMessage => res.send(savedMessage))
-        .catch(err => {
-            console.error(err);
-            res.status(500).send(err);
+    messageRouter.post('/', (req, res) => {
+        const message = new MessageModel ({
+            content: req.body.content
         });
-});
+
+        message.save()
+            .then(savedMessage => res.send(savedMessage))
+            .catch(err => {
+                console.error(err);
+                res.status(500).send(err);
+            });
+    });
 
 messageRouter.get('/', (req, res) => {
     MessageModel.find({})

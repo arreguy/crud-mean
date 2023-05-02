@@ -2,9 +2,7 @@ import express from "express";
 import cors from "cors";
 import mongoose from "mongoose";
 import messageRouter from './routes/message.routes';
-import appRouter from './routes/app.routes';
 import userRouter from './routes/user.routes';
-import path from "path";
 
 const app = express();
 
@@ -14,9 +12,16 @@ app.use(cors({
     origin:["http://localhost:4200"]
 }));
 
-mongoose.connect("mongodb://127.0.0.1:27017/db-mean");
+mongoose.connect("mongodb://127.0.0.1:27017/db-mean")
+    .then(() => {
+        console.log("Conectado ao banco.");
+    })
+    .catch(() => {
+        console.log("Não foi possível conectar ao banco.");
+    });
 
 app.use('/messages', messageRouter);
+app.use('/user', userRouter);
 
 const PORT = 3000;
 app.listen(PORT, () => {
