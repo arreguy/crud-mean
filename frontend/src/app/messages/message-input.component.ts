@@ -13,7 +13,10 @@ export class MessageInputComponent {
   constructor (private messageService: MessageService) { }
 
   onSubmit(form: NgForm) {
-    const messageAux = new Message(form.value.myContentngForm, 'Breno');
+
+    const emailUser = localStorage.getItem('email')!
+    console.log(emailUser)
+    const messageAux = new Message(form.value.myContentngForm, emailUser);
     this.messageService.addMessage(messageAux).subscribe(() => {
       console.log("Message sent.");   
     });

@@ -1,12 +1,14 @@
 import express from "express";
 import { MessageModel } from "../models/message.model";
 import { UserModel } from "../models/user.model";
+import userRouter from "../routes/user.routes";
+import jwt from "jsonwebtoken";
 
 const messageRouter = express.Router();
-
     messageRouter.post('/', (req, res) => {
         const message = new MessageModel ({
-            content: req.body.content
+            content: req.body.content,
+            user: req.body.username
         });
 
         message.save()
@@ -18,6 +20,8 @@ const messageRouter = express.Router();
     });
 
 messageRouter.get('/', (req, res) => {
+    var emailBody = req.body.email;
+    console.log(emailBody)
     MessageModel.find({})
         .then(messages => res.send(messages))
         .catch(err => {

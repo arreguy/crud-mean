@@ -12,7 +12,7 @@ import { MessageService } from './message.service';
 })
 export class MessageComponent {
 
-  @Input() messageVarClasse : Message = new Message("", "${this.authService.usuarioAtual.firstName} ${this.authService.usuarioAtual.lastName}");
+  @Input() messageVarClasse : Message = new Message("", localStorage.getItem('email')!);
 
   @Output() editClicked_MessageMetodoClasse = new EventEmitter<string>();
 
@@ -25,7 +25,7 @@ export class MessageComponent {
     }
   }
 
-  constructor(private messageService: MessageService, private authService: AuthService) {  }
+  constructor(private messageService: MessageService) {  }
 
   onDelete() {
     this.messageService.deleteMessage(this.messageVarClasse)

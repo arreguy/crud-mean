@@ -17,8 +17,12 @@ export class SignupComponent implements OnInit {
       this.myForm.value.firstNameTS,
       this.myForm.value.lastNameTS,
       this.myForm.value.passwordTS,
-      this.myForm.value.emailTS
+      this.myForm.value.emailTS,
+      this.myForm.value.countryTS,
+      this.myForm.value.genderTS,
+      this.myForm.value.majorityTS
     );
+    console.log(user);
     this.authService.signup(user)
       .subscribe({
         next: dados => console.log(dados),
@@ -31,7 +35,10 @@ export class SignupComponent implements OnInit {
       emailTS: ['', [Validators.required, Validators.pattern("[a-zA-Z0-9\-\_\.]+@[a-zA-Z0-9\-\_\.]+")]],
       passwordTS: ['', Validators.required],
       firstNameTS: ['', Validators.required],
-      lastNameTS: ['', Validators.required]
+      lastNameTS: ['', Validators.required],
+      countryTS: ['', Validators.required],
+      genderTS: ['', Validators.required],
+      majorityTS: ['', Validators.required]
     });
   }
 }

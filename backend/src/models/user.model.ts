@@ -4,8 +4,10 @@ export const UserSchema = new Schema({
     firstName: {type: String, required: true},
     lastName: {type: String, required: true},
     password: {type: String, required: true},
-    email: {type: String, required: true, unique: true},
-    messages: [{type: Schema.Types.ObjectId, ref: 'MessageSchema'}]
+    gender: {type: String, required: true},
+    country: {type: String, required: true},
+    majority: {type: Boolean, required: true},
+    email: {type: String, required: true, unique: true}
 });
 
 export const UserModel = model("user", UserSchema)

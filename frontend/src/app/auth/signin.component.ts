@@ -18,7 +18,6 @@ export class SigninComponent {
 
     this.authService.signin(user).subscribe((result) => {
       console.log(result);
-      console.log(`${this.authService.usuarioAtual.firstName} ${this.authService.usuarioAtual.lastName}`)
       this.myForm.reset();
     });
   }

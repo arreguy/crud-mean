@@ -13,6 +13,7 @@ export class MessageService {
   constructor(private http: HttpClient, private authService: AuthService) { }
 
   addMessage(message: Message): Observable<Message> {
+    console.log(message)
     return this.http.post<Message>('http://localhost:3000/messages', message)
       .pipe(
         tap((newMessage: Message) => {

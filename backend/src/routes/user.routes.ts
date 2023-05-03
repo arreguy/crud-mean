@@ -7,7 +7,7 @@ const userRouter = express();
 
 userRouter.post('/signup', async (req, res) => {
     try {
-        const { email, password, firstName, lastName } = req.body;
+        const { email, password, firstName, lastName, country, gender, majority } = req.body;
         const userExistente = await UserModel.findOne({ email });
     
         if (userExistente) {
@@ -21,7 +21,12 @@ userRouter.post('/signup', async (req, res) => {
           password: senhaCripto,
           firstName,
           lastName,
+          country,
+          gender,
+          majority
         });
+
+        console.log(novoUser);
     
         await novoUser.save();
     

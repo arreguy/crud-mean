@@ -9,10 +9,6 @@ import { map, Observable } from 'rxjs';
 })
 export class AuthService {
 
-  usuarioAtual: User = {
-    firstName: 'Convidado', lastName: '', email: '', password: ''
-  };
-
   constructor(private http: HttpClient, private router: Router) { }
 
   signup(user: User) {
@@ -27,9 +23,8 @@ export class AuthService {
           if (token) {
             localStorage.setItem('token', token);
             localStorage.setItem('currentUser', JSON.stringify(userExistente));
-            this.usuarioAtual.firstName = userExistente.firstName;
-            this.usuarioAtual.lastName = userExistente.lastName;
-            console.log(this.usuarioAtual)
+            localStorage.setItem('email',user.email);
+            console.log(localStorage.getItem('email'));
             return alert("Logado com sucesso!")
           }
           return alert("Erro.")
@@ -40,7 +35,6 @@ export class AuthService {
   logout() {
     localStorage.removeItem('token');
     localStorage.removeItem('usuarioAtual');
-    this.usuarioAtual = { firstName: 'Convidado', lastName: '', email: '', password: '' }
     this.router.navigate(['/signin']);
   }
 

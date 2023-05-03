@@ -8,7 +8,7 @@ import { MessageService } from './message.service';
       <div class> 
         <app-message [messageVarClasse]="msg"
           (editClicked_MessageMetodoClasse)="msg.content = $event"  
-          *ngFor="let msg of this.messageService.messageSService" >
+          *ngFor="let msg of this.messageService.messageSService.reverse()" >
         </app-message>    
     </div>
   `

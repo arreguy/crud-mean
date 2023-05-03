@@ -27,7 +27,50 @@
                 formControlName="passwordTS">
     </div>
 
-    <button class="btn btn-primary" type="submit"
-            [disabled]="!myForm.valid">Cadastrar</button>
+    <div class="row">
 
-</form>
+        <div class="form-group mb-3 col">
+            <h6>Sexo</h6>
+    
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="genderTS" id="Masculino" value="Masculino" formControlName="genderTS" required>
+                <label class="form-check-label" for="inlineRadio1">Masculino</label>
+            </div>
+        
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="genderTS" id="Feminino" value="Feminino" formControlName="genderTS">
+                <label class="form-check-label" for="inlineRadio2">Feminino</label>
+            </div>
+        
+            <div class="form-check form-check-inline"> 
+                <input class="form-check-input" type="radio" name="genderTS" id="NaoBinario" value="NaoBinario" formControlName="genderTS">
+                <label class="form-check-label" for="inlineRadio3">Não-Binário</label>
+            </div>
+    
+        </div>
+    
+        <div class="form-check mb-3 col">
+            <h6>Nacionalidade</h6>
+    
+            <select class="form-select form-select-sm " aria-label=".form-select-sm example" formControlName="countryTS">
+                <option value="Indefinido"selected>Selecione aqui</option>
+                <option value="Brasileiro">Brasileiro</option>
+                <option value="Italiano">Italiano</option>
+                <option value="Japones">Japonês</option>
+                <option value="Paquistanes">Paquistanes</option>
+          </select>
+        </div>
+    
+        </div>
+    
+        <div class="form-check mb-3">
+            <input class="form-check-input" name="majority" type="checkbox" value="sim" id="checkbox" formControlName="majorityTS">
+            <label class="form-check-label" for="checkbox">
+                Tenho mais de 18 anos
+            </label>
+        </div>
+    
+        <button class="btn btn-primary" type="submit"
+            [disabled]="!myForm.valid">Cadastrar</button>
+    
+    </form>
